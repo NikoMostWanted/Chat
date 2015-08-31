@@ -43,4 +43,4 @@ document.onkeyup = function () {
     }
     return false;
 }
-setInterval(update, 200);
+setInterval(update, 100);

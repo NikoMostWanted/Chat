@@ -17,11 +17,11 @@
             }
             break;
         case 'Registration':
-            list($flag,$login) = $object->insertUser($_POST['firstName'], $_POST['lastName'], $_POST['login'], md5($_POST['password']));
+            list($flag,$id_user) = $object->insertUser($_POST['firstName'], $_POST['lastName'], $_POST['login'], md5($_POST['password']));
             if ($flag) {
                 unset($object);
                 session_start();
-                $_SESSION['id_user']=$result;
+                $_SESSION['id_user']=$id_user;
                 require_once('../views/success_registration_view.htm');
             } else {
                 unset($object);

@@ -39,7 +39,7 @@ class DataBase
         $queryLN = "insert into lastnames values(null,'$lastName')";
         $selectFN = "select id from firstnames where firstname='$firstName'";
         $selectLN = "select id from lastnames where lastname='$lastName'";
-        $selectLog = "select login from users where login='$login'";
+        $selectLog = "select id from users where login='$login'";
 
         $link = $this->connectToBase();
         $result = current(mysqli_fetch_assoc(mysqli_query($link, $selectLog)));
@@ -49,18 +49,18 @@ class DataBase
             mysqli_query($link, $queryLN);
             $id_lastName = current(mysqli_fetch_assoc(mysqli_query($link, $selectLN)));
             mysqli_query($link, "insert into users values(null,'$id_firstName','$id_lastName','$login','$password')");
-
-            $result = $login;//maybe will correct !!!
+            $id_user =  mysqli_insert_id($link);
 
         } else $flag = false;
         mysqli_close($link);
-        $result = array($flag, $result);
+        $result = array($flag, $id_user);
         return $result;
     }
 
     public function insertChat($id, $text)
     {
         $link = $this->connectToBase();
+        date_default_timezone_set('Ukraine/Kiev');
         $time = strftime('%H:%M:%S');
         $query = "insert into speaking values(null,'$id','$text','$time')";
         mysqli_query($link, $query);

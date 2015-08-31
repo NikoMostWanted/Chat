@@ -7,7 +7,9 @@
 <body>
 <script src="../../js/property.js"></script>
     <div align="right">
-        <a href="">End chatting</a>
+        <form action="<?=$_SERVER['SCRIPT_NAME'];?>" method="post">
+            <input type="submit" name="end" value="End chatting"><br/>
+        </form>
     </div>
     <div align="center">
         <textarea id="textOut" rows="20" cols="100" readonly></textarea><br/>
